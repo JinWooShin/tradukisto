@@ -17,6 +17,7 @@ import static pl.allegro.finance.tradukisto.MoneyConverters.SERBIAN_BANKING_MONE
 import static pl.allegro.finance.tradukisto.MoneyConverters.SLOVAK_BANKING_MONEY_VALUE
 import static pl.allegro.finance.tradukisto.MoneyConverters.TURKISH_BANKING_MONEY_VALUE
 import static pl.allegro.finance.tradukisto.MoneyConverters.UKRAINIAN_BANKING_MONEY_VALUE
+import static pl.allegro.finance.tradukisto.MoneyConverters.USENGLISH_BANKING_MONEY_VALUE
 
 class MoneyConvertersTest extends Specification {
 
@@ -83,6 +84,11 @@ class MoneyConvertersTest extends Specification {
     def "should convert numbers in French"() {
         expect:
         FRENCH_BANKING_MONEY_VALUE.asWords(1_234.56) == "mille deux cent trente-quatre € 56/100"
+    }
+
+    def "should convert numbers in US English"() {
+        expect:
+        USENGLISH_BANKING_MONEY_VALUE.asWords(1_123.56) == "one thousand two hundred thirty-four dollars and fifty-six cents"
     }
 
     def "should throw exception when null given"() {

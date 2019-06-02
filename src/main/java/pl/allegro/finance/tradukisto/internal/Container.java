@@ -31,6 +31,8 @@ import pl.allegro.finance.tradukisto.internal.languages.turkish.TurkishIntegerTo
 import pl.allegro.finance.tradukisto.internal.languages.turkish.TurkishSmallNumbersToWordsConverter;
 import pl.allegro.finance.tradukisto.internal.languages.turkish.TurkishValues;
 import pl.allegro.finance.tradukisto.internal.languages.ukrainian.UkrainianValues;
+import pl.allegro.finance.tradukisto.internal.languages.usEnglish.USEnglishBigDecimalToBankingMoneyConverter;
+import pl.allegro.finance.tradukisto.internal.languages.usEnglish.USEnglishValues;
 
 public final class Container {
 
@@ -83,10 +85,22 @@ public final class Container {
         return new Container(new EnglishValues());
     }
 
+    public static Container usEnglishContainer() {
+        USEnglishValues values = new USEnglishValues();
+        HundredsToWordsConverter hundredsToStringConverter = new HundredsToWordsConverter(values.baseNumbers(),
+                values.twoDigitsNumberSeparator());
+        IntegerToWordsConverter integerConverter = new IntegerToWordsConverter(
+                hundredsToStringConverter,
+                values.pluralForms());
+        BigDecimalToStringConverter bigDecimalConverter = new USEnglishBigDecimalToBankingMoneyConverter(
+                integerConverter,
+                values.currency());
+        return new Container(integerConverter, bigDecimalConverter);
+    }
+
     public static Container frenchContainer() {
 
         FrenchValues values = new FrenchValues();
-
         HundredsToWordsConverter hundredsToWordsConverter =
                 new HundredsToWordsConverter(values.baseNumbers(), values.twoDigitsNumberSeparator());
         IntegerToWordsConverter frenchIntegerToWordsConverter =
