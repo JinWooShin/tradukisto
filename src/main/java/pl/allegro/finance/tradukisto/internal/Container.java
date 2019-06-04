@@ -92,15 +92,16 @@ public final class Container {
         IntegerToWordsConverter integerConverter = new IntegerToWordsConverter(
                 hundredsToStringConverter,
                 values.pluralForms());
-        BigDecimalToStringConverter bigDecimalConverter = new USEnglishBigDecimalToBankingMoneyConverter(
+        BigDecimalToStringConverter bigDecimalBankingMoneyValueConverter = new USEnglishBigDecimalToBankingMoneyConverter(
                 integerConverter,
                 values.currency());
-        return new Container(integerConverter, bigDecimalConverter);
+        return new Container(integerConverter, bigDecimalBankingMoneyValueConverter);
     }
 
     public static Container frenchContainer() {
 
         FrenchValues values = new FrenchValues();
+
         HundredsToWordsConverter hundredsToWordsConverter =
                 new HundredsToWordsConverter(values.baseNumbers(), values.twoDigitsNumberSeparator());
         IntegerToWordsConverter frenchIntegerToWordsConverter =

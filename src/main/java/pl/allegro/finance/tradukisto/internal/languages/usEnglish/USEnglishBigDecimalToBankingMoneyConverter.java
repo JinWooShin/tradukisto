@@ -2,7 +2,6 @@ package pl.allegro.finance.tradukisto.internal.languages.usEnglish;
 
 import pl.allegro.finance.tradukisto.internal.BigDecimalToStringConverter;
 import pl.allegro.finance.tradukisto.internal.IntegerToStringConverter;
-import pl.allegro.finance.tradukisto.internal.converters.BigDecimalToBankingMoneyConverter;
 
 import java.math.BigDecimal;
 
@@ -21,7 +20,7 @@ public class USEnglishBigDecimalToBankingMoneyConverter implements BigDecimalToS
         this.currencySymbol = currencySymbol;
     }
 
-    public String asWords (BigDecimal value) {
+    public String asWords(BigDecimal value) {
         validate(value);
         Integer units = value.intValue();
         Integer subunits = value.remainder(BigDecimal.ONE).multiply(new BigDecimal(100)).intValue();

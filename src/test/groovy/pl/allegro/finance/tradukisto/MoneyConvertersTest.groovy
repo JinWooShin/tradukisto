@@ -88,7 +88,7 @@ class MoneyConvertersTest extends Specification {
 
     def "should convert numbers in US English"() {
         expect:
-        USENGLISH_BANKING_MONEY_VALUE.asWords(1_123.56) == "one thousand two hundred thirty-four dollars and fifty-six cents"
+        USENGLISH_BANKING_MONEY_VALUE.asWords(1_234.56) == "one thousand two hundred thirty-four dollars and fifty-six cents"
     }
 
     def "should throw exception when null given"() {
